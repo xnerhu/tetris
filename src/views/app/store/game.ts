@@ -4,6 +4,8 @@ import {
   GAME_CANVAS_WIDTH,
   GAME_CANVAS_HEIGHT,
   GAME_SQUARE_SIZE,
+  GAME_X_COUNT,
+  GAME_Y_COUNT,
 } from '~/constants';
 import { Shape } from '~/interfaces/shape';
 import { mergeShape, willCollide, getShapePoints } from '~/utils';
@@ -43,6 +45,22 @@ export class GameStore {
 
       ctx.fillStyle = point.color;
       ctx.fill();
+    }
+
+    for (let x = 0; x < GAME_X_COUNT; x++) {
+      for (let y = 0; y < GAME_Y_COUNT; y++) {
+        ctx.beginPath();
+
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 1;
+
+        ctx.strokeRect(
+          x * GAME_SQUARE_SIZE,
+          y * GAME_SQUARE_SIZE,
+          GAME_SQUARE_SIZE,
+          GAME_SQUARE_SIZE,
+        );
+      }
     }
   }
 
