@@ -10,13 +10,15 @@ import {
 import store from '../../store';
 import { StyledApp, GameCanvas } from './styles';
 import { shapesList } from '~/defaults';
+import { willCollide } from '~/utils';
 
 @observer
 class App extends React.Component {
   componentDidMount() {
-    store.gameStore.addShape(shapesList.a, 1, GAME_Y_COUNT - 8);
+    store.gameStore.setShape(shapesList.a, 1, GAME_Y_COUNT - 8);
+    store.gameStore.render();
 
-    store.gameStore.timer = setInterval(store.gameStore.pushShape, 400);
+    // store.gameStore.timer = setInterval(store.gameStore.pushShape, 400);
 
     window.addEventListener('keydown', this.onKeyDown);
   }
@@ -39,19 +41,19 @@ class App extends React.Component {
     const currentShape = gameStore.currentShape;
 
     if (e.code === 'ArrowLeft') {
-      if (!gameStore.willCollide(currentShape, 'left')) {
+      if (!willCollide(currentShape, 'left')) {
         currentShape.x--;
       }
     } else if (e.code === 'ArrowRight') {
-      if (!gameStore.willCollide(currentShape, 'right')) {
+      if (!willCollide(currentShape, 'right')) {
         currentShape.x++;
       }
     } else if (e.code === 'ArrowDown') {
-      if (!gameStore.willCollide(currentShape, 'bottom')) {
+      if (!willCollide(currentShape, 'bottom')) {
         currentShape.y++;
       }
     } else if (e.code === 'ArrowUp') {
-      if (!gameStore.willCollide(currentShape, 'top')) {
+      if (!willCollide(currentShape, 'top')) {
         currentShape.y--;
       }
     }
