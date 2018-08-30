@@ -1,0 +1,55 @@
+{
+  "name": "tetris-js",
+  "version": "1.0.0",
+  "description": "A tetris game",
+  "keywords": [
+    "tetris",
+    "game",
+    "react",
+    "mobx",
+    "styled-components"
+  ],
+  "homepage": "https://github.com/xNerhu/tetris-js#readme",
+  "author": {
+    "name": "Mikołaj Palkiewicz",
+    "email": "xnerhu@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xNerhu/tetris-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xNerhu/tetris-js/issues"
+  },
+  "scripts": {
+    "watch": "webpack-dev-server --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js",
+    "lint": "tslint \"src/**/*.ts*\"",
+    "lint-fix": "prettier --write \"src/**/*.ts*\" && tslint \"src/**/*.ts*\" --fix"
+  },
+  "pre-commit": [
+    "lint-fix"
+  ],
+  "devDependencies": {
+    "@types/react": "16.4.7",
+    "@types/react-dom": "16.0.6",
+    "awesome-typescript-loader": "5.2.0",
+    "copy-webpack-plugin": "4.5.2",
+    "mobx": "5.0.3",
+    "mobx-react": "5.2.3",
+    "prettier": "1.14.0",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "react-hot-loader": "4.3.4",
+    "styled-components": "3.4.0",
+    "tslint": "5.11.0",
+    "tslint-config-airbnb": "5.9.2",
+    "tslint-config-prettier": "1.14.0",
+    "typescript": "3.0.1",
+    "url-loader": "1.0.1",
+    "webpack": "4.16.4",
+    "webpack-cli": "3.1.0",
+    "webpack-dev-server": "3.1.5",
+    "webpack-merge": "4.1.4"
+  }
+}
