@@ -1,8 +1,21 @@
 import { Shape } from '~/interfaces/shape';
 
 export const shapesList: { [key: string]: Shape } = {
-  test: {
+  a: {
     color: 'red',
+    points: [
+      {
+        x: 0,
+        y: 0,
+      },
+      {
+        x: 1,
+        y: 1,
+      },
+    ],
+  },
+  b: {
+    color: 'orange',
     points: [
       {
         x: 0,

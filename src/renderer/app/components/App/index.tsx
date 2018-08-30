@@ -9,15 +9,10 @@ import { shapesList } from '~/defaults';
 @observer
 class App extends React.Component {
   public componentDidMount() {
-    store.gameStore.addShape(shapesList.test, 1);
+    store.gameStore.addShape(shapesList.a, 1, 16);
     store.gameStore.render();
 
-    setInterval(() => {
-      const current = store.gameStore.currentShape;
-      current.y++;
-
-      store.gameStore.render();
-    }, 400);
+    store.gameStore.timer = setInterval(store.gameStore.moveShape, 400);
   }
 
   public render() {

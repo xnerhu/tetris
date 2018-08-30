@@ -1,1 +1,1 @@
-export * from './design';
+export * from '~/constants/game';
