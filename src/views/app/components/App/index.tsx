@@ -4,6 +4,7 @@ import React from 'react';
 import {
   GAME_CANVAS_WIDTH,
   GAME_CANVAS_HEIGHT,
+  GAME_X_COUNT,
   GAME_Y_COUNT,
 } from '~/constants';
 import store from '../../store';
@@ -12,12 +13,51 @@ import { shapesList } from '~/defaults';
 
 @observer
 class App extends React.Component {
-  public componentDidMount() {
-    store.gameStore.addShape(shapesList.a, 1, GAME_Y_COUNT - 4);
-    store.gameStore.render();
+  componentDidMount() {
+    store.gameStore.addShape(shapesList.a, 1, GAME_Y_COUNT - 8);
 
-    store.gameStore.timer = setInterval(store.gameStore.moveShape, 400);
+    store.gameStore.timer = setInterval(store.gameStore.pushShape, 400);
+
+    window.addEventListener('keydown', this.onKeyDown);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKeyDown);
+  }
+
+  public onKeyDown = (e: KeyboardEvent) => {
+    if (
+      e.code !== 'ArrowLeft' &&
+      e.code !== 'ArrowRight' &&
+      e.code !== 'ArrowDown' &&
+      e.code !== 'ArrowUp'
+    ) {
+      return;
+    }
+
+    const gameStore = store.gameStore;
+    const currentShape = gameStore.currentShape;
+
+    if (e.code === 'ArrowLeft') {
+      if (!gameStore.willCollide(currentShape, 'left')) {
+        currentShape.x--;
+      }
+    } else if (e.code === 'ArrowRight') {
+      if (!gameStore.willCollide(currentShape, 'right')) {
+        currentShape.x++;
+      }
+    } else if (e.code === 'ArrowDown') {
+      if (!gameStore.willCollide(currentShape, 'bottom')) {
+        currentShape.y++;
+      }
+    } else if (e.code === 'ArrowUp') {
+      if (!gameStore.willCollide(currentShape, 'top')) {
+        currentShape.y--;
+      }
+    }
+
+    store.gameStore.render();
+  };
 
   public render() {
     return (

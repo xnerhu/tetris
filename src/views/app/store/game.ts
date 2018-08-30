@@ -19,15 +19,49 @@ export class GameStore {
 
   public currentShape: Shape;
 
-  public secondShapeTest = false;
-
   public addShape(shape: Shape, x: number, y = 0) {
     this.currentShape = shape;
     this.currentShape.x = x;
     this.currentShape.y = y;
   }
 
-  private mergeShape(shape: Shape) {
+  public willCollide = (
+    shape: Shape,
+    side: 'top' | 'bottom' | 'left' | 'right',
+  ) => {
+    const points = this.getShapePoints(shape);
+
+    for (const point of points) {
+      const { x, y } = point;
+      let sameCoord;
+
+      if (side === 'top') {
+        sameCoord = this.points.find(e => e.x === x && e.y === y - 1);
+        if (y <= 0) return true;
+      }
+
+      if (side === 'bottom') {
+        sameCoord = this.points.find(e => e.x === x && e.y === y + 1);
+        if (y >= GAME_Y_COUNT - 1) return true;
+      }
+
+      if (side === 'right') {
+        sameCoord = this.points.find(e => e.x === x + 1 && e.y === y);
+        if (x >= GAME_X_COUNT - 1) return true;
+      }
+
+      if (side === 'left') {
+        sameCoord = this.points.find(e => e.x === x - 1 && e.y === y);
+        if (x <= 0) return true;
+      }
+
+      if (sameCoord) return true;
+    }
+
+    return false;
+  };
+
+  public getShapePoints(shape: Shape) {
     const points: Point[] = [];
 
     for (let i = 0; i < shape.points.length; i++) {
@@ -40,23 +74,35 @@ export class GameStore {
       points.push(point);
     }
 
-    for (const point of points) {
-      const sameCoord = this.points.find(
-        e => e.x === point.x && e.y === point.y + 1,
-      );
+    return points;
+  }
 
-      if (point.y + 1 >= GAME_Y_COUNT || sameCoord) {
-        this.points = [...this.points, ...points];
-
-        this.currentShape = null;
-        this.onFall();
-
-        return this.points;
-      }
-    }
-
+  private mergeShape(shape: Shape) {
+    const points = this.getShapePoints(shape);
     return [...this.points, ...points];
   }
+
+  public pushShape = () => {
+    if (this.currentShape == null) return;
+    const willCollide = this.willCollide(this.currentShape, 'bottom');
+
+    if (!willCollide) {
+      this.currentShape.y++;
+    } else {
+      this.points = [...this.points, ...this.getShapePoints(this.currentShape)];
+
+      const hash = '0123456789ABCDEF';
+      let hashColor = '#';
+
+      for (let i = 0; i < 6; i++) {
+        hashColor += hash[Math.floor(Math.random() * hash.length)];
+      }
+
+      this.addShape({ ...shapesList.a, ...{ color: hashColor } }, 1, 1);
+    }
+
+    this.render();
+  };
 
   public render() {
     const points = this.mergeShape(this.currentShape);
@@ -79,23 +125,4 @@ export class GameStore {
       ctx.fill();
     }
   }
-
-  public moveShape = () => {
-    if (this.currentShape == null) {
-      return clearInterval(this.timer);
-    }
-
-    this.currentShape.y++;
-    this.render();
-  };
-
-  public onFall = () => {
-    if (this.secondShapeTest) return;
-
-    this.addShape(shapesList.b, 1, GAME_Y_COUNT - 8);
-    this.render();
-
-    this.timer = setInterval(this.moveShape, 400, 1);
-    this.secondShapeTest = true;
-  };
 }
