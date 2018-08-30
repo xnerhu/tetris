@@ -22,7 +22,7 @@ module.exports = {
     extensions: ['.js', '.tsx', '.ts', '.json'],
     alias: {
       '@app': join(__dirname, './src/renderer/app'),
-      '@newtab': join(__dirname, './src/renderer/newtab'),
+      '@defaults': join(__dirname, './src/renderer/defaults'),
       '@mixins': join(__dirname, './src/renderer/mixins'),
       '@components': join(__dirname, './src/renderer/components'),
       '~': join(__dirname, './src'),

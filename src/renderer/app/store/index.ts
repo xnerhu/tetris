@@ -1,8 +1,8 @@
-import { observable, computed } from 'mobx';
+import { observable } from 'mobx';
 
 export class Store {
   @observable
-  public test = 'Test';
+  public playCanvas: HTMLCanvasElement;
 }
 
 export default new Store();

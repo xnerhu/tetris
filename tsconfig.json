@@ -23,7 +23,7 @@
 
     "paths": {
       "@app/*": ["src/renderer/app/*"],
-      "@newtab/*": ["src/renderer/newtab/*"],
+      "@defaults": ["src/renderer/defaults"],
       "@mixins": ["src/renderer/mixins"],
       "@components/*": ["src/renderer/components/*"],
       "~/*": ["src/*"]
