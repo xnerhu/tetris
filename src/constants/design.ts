@@ -1,10 +1,10 @@
-// Canvas
-export const GAME_CANVAS_WIDTH = 512;
-export const GAME_CANVAS_HEIGHT = 512;
+// Squares
+export const GAME_SQUARE_SIZE = 32;
 
-// Game
-export const GAME_X_ITEMS_COUNT = 16;
-export const GAME_Y_ITEMS_COUNT = 16;
+// Squares count
+export const GAME_X_COUNT = 16;
+export const GAME_Y_COUNT = 16;
 
-// Item
-export const GAME_ITEM_SIZE = GAME_CANVAS_WIDTH / GAME_X_ITEMS_COUNT;
+// Game canvas
+export const GAME_CANVAS_WIDTH = GAME_X_COUNT * GAME_SQUARE_SIZE;
+export const GAME_CANVAS_HEIGHT = GAME_Y_COUNT * GAME_SQUARE_SIZE;
