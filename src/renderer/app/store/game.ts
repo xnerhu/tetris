@@ -40,4 +40,14 @@ export class GameStore {
       ctx.fill();
     }
   }
+
+  public addShape(shape: any, x: number, y: number) {
+    for (const point of shape.points) {
+      this.fields.push({
+        x: point.x + x,
+        y: point.y + y,
+        color: shape.color,
+      });
+    }
+  }
 }
