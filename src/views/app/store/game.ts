@@ -9,7 +9,7 @@ import {
 } from '~/constants';
 import { Shape } from '~/interfaces/shape';
 import { mergeShape, willCollide, getShapePoints } from '~/utils';
-import { shapesList } from '~/defaults';
+import { shapesList, POINT_BORDER_COLOR, POINT_BORDER_WIDTH } from '~/defaults';
 
 export class GameStore {
   public canvas: HTMLCanvasElement;
@@ -26,9 +26,33 @@ export class GameStore {
     this.currentShape.y = y;
   }
 
+  private drawBorders(
+    ctx: CanvasRenderingContext2D,
+    direction: 'vertical' | 'horizontal',
+  ) {
+    const count = direction === 'vertical' ? GAME_X_COUNT : GAME_Y_COUNT;
+
+    for (let i = 0; i < count; i++) {
+      ctx.beginPath();
+
+      ctx.lineWidth = POINT_BORDER_WIDTH;
+      ctx.strokeStyle = POINT_BORDER_COLOR;
+
+      if (direction === 'vertical') {
+        ctx.moveTo(i * GAME_SQUARE_SIZE - 0.5, 0);
+        ctx.lineTo(i * GAME_SQUARE_SIZE - 0.5, GAME_CANVAS_HEIGHT);
+      } else {
+        ctx.moveTo(0, i * GAME_SQUARE_SIZE - 0.5);
+        ctx.lineTo(GAME_CANVAS_HEIGHT, i * GAME_SQUARE_SIZE - 0.5);
+      }
+
+      ctx.stroke();
+    }
+  }
+
   public render() {
-    const points = mergeShape(this.currentShape);
     const ctx = this.canvas.getContext('2d');
+    const points = mergeShape(this.currentShape);
 
     ctx.imageSmoothingEnabled = false;
     ctx.clearRect(0, 0, GAME_CANVAS_WIDTH, GAME_CANVAS_HEIGHT);
@@ -47,27 +71,8 @@ export class GameStore {
       ctx.fill();
     }
 
-    for (let x = 0; x < GAME_X_COUNT; x++) {
-      ctx.beginPath();
-
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = '#000';
-
-      ctx.moveTo(x * GAME_SQUARE_SIZE - 0.5, 0);
-      ctx.lineTo(x * GAME_SQUARE_SIZE - 0.5, GAME_CANVAS_HEIGHT);
-      ctx.stroke();
-    }
-
-    for (let y = 0; y < GAME_Y_COUNT; y++) {
-      ctx.beginPath();
-
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = '#000';
-
-      ctx.moveTo(0, y * GAME_SQUARE_SIZE - 0.5);
-      ctx.lineTo(GAME_CANVAS_HEIGHT, y * GAME_SQUARE_SIZE - 0.5);
-      ctx.stroke();
-    }
+    this.drawBorders(ctx, 'vertical');
+    this.drawBorders(ctx, 'horizontal');
   }
 
   public pushDown = () => {
