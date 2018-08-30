@@ -1,5 +1,5 @@
 export interface Shape {
-  color: string;
+  color?: string;
   description?: string;
   x?: number;
   y?: number;
