@@ -4,15 +4,22 @@ import React from 'react';
 import { GAME_CANVAS_WIDTH, GAME_CANVAS_HEIGHT } from '~/constants';
 import store from '../../store';
 import { StyledApp, GameCanvas } from './styles';
-import { shapes } from '~/defaults';
+import { shapesList } from '~/defaults';
+import { Shape } from '~/interfaces/shape';
 
 @observer
 class App extends React.Component {
   public componentDidMount() {
-    store.gameStore.fields = [];
+    let y = 0;
 
-    store.gameStore.addShape(shapes.test, 0, 0);
-    store.gameStore.render();
+    setInterval(() => {
+      store.gameStore.fields = [];
+      store.gameStore.addShape(shapesList.test as Shape, 0, y);
+
+      store.gameStore.render();
+
+      y++;
+    }, 1000);
   }
 
   public render() {

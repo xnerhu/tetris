@@ -1,6 +1,13 @@
 import { Field } from '~/interfaces';
 
-import { GAME_X_COUNT, GAME_Y_COUNT, GAME_SQUARE_SIZE } from '~/constants';
+import {
+  GAME_CANVAS_WIDTH,
+  GAME_CANVAS_HEIGHT,
+  GAME_X_COUNT,
+  GAME_Y_COUNT,
+  GAME_SQUARE_SIZE,
+} from '~/constants';
+import { Shape } from '~/interfaces/shape';
 
 export class GameStore {
   public canvas: HTMLCanvasElement;
@@ -23,6 +30,7 @@ export class GameStore {
     const ctx = this.canvas.getContext('2d');
 
     ctx.imageSmoothingEnabled = false;
+    ctx.clearRect(0, 0, GAME_CANVAS_WIDTH, GAME_CANVAS_HEIGHT);
 
     for (const item of this.fields) {
       if (!this.validate(item)) return;
@@ -41,7 +49,7 @@ export class GameStore {
     }
   }
 
-  public addShape(shape: any, x: number, y: number) {
+  public addShape(shape: Shape, x: number, y: number) {
     for (const point of shape.points) {
       this.fields.push({
         x: point.x + x,
