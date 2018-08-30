@@ -32,7 +32,7 @@ const appConfig = merge.smart(config, {
   target: 'web',
 
   entry: {
-    app: ['react-hot-loader/patch', './src/renderer/app'],
+    app: ['react-hot-loader/patch', './src/views/app'],
   },
 
   devServer: {

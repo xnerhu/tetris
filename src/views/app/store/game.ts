@@ -41,11 +41,15 @@ export class GameStore {
     }
 
     for (const point of points) {
-      if (point.y + 1 >= GAME_Y_COUNT) {
+      const sameCoord = this.points.find(
+        e => e.x === point.x && e.y === point.y + 1,
+      );
+
+      if (point.y + 1 >= GAME_Y_COUNT || sameCoord) {
         this.points = [...this.points, ...points];
 
         this.currentShape = null;
-        // this.onFall();
+        this.onFall();
 
         return this.points;
       }
@@ -88,10 +92,10 @@ export class GameStore {
   public onFall = () => {
     if (this.secondShapeTest) return;
 
-    this.addShape(shapesList.b, 1);
+    this.addShape(shapesList.b, 1, GAME_Y_COUNT - 8);
     this.render();
 
-    this.timer = setInterval(this.moveShape, 400);
+    this.timer = setInterval(this.moveShape, 400, 1);
     this.secondShapeTest = true;
   };
 }

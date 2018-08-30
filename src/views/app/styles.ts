@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { fonts } from '~/renderer/defaults';
+import { fonts } from '~/views/defaults';
 import { body2 } from '@mixins';
 
 export const Style = css`

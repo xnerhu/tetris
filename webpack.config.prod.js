@@ -38,7 +38,7 @@ const appConfig = merge.smart(config, {
   target: 'web',
 
   entry: {
-    app: ['./src/renderer/app'],
+    app: ['./src/views/app'],
   },
 });
 
