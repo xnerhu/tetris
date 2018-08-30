@@ -15,7 +15,7 @@ import { willCollide } from '~/utils';
 @observer
 class App extends React.Component {
   componentDidMount() {
-    store.gameStore.setShape(shapesList[7], 1, GAME_Y_COUNT - 8);
+    store.gameStore.setShape(shapesList[0], 1, GAME_Y_COUNT - 8);
     store.gameStore.render();
 
     // store.gameStore.timer = setInterval(store.gameStore.pushDown, 600);

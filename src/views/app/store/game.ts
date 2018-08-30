@@ -8,7 +8,12 @@ import {
   GAME_Y_COUNT,
 } from '~/constants';
 import { Shape } from '~/interfaces/shape';
-import { mergeShape, willCollide, getShapePoints } from '~/utils';
+import {
+  mergeShape,
+  willCollide,
+  getShapePoints,
+  getRandomShapeColor,
+} from '~/utils';
 import { shapesList, POINT_BORDER_COLOR, POINT_BORDER_WIDTH } from '~/defaults';
 
 export class GameStore {
@@ -22,8 +27,10 @@ export class GameStore {
 
   public setShape(shape: Shape, x: number, y = 0) {
     this.currentShape = shape;
+
     this.currentShape.x = x;
     this.currentShape.y = y;
+    this.currentShape.color = getRandomShapeColor();
   }
 
   private drawBorders(
