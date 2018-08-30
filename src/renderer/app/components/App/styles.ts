@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { centerBoth } from '@mixins';
+import { GAME_CANVAS_WIDTH, GAME_CANVAS_HEIGHT } from '~/constants';
 
 export const StyledApp = styled.div`
   display: flex;
@@ -10,9 +11,9 @@ export const StyledApp = styled.div`
   overflow: hidden;
 `;
 
-export const PlayCanvas = styled.canvas`
-  width: 512px;
-  height: 512px;
+export const GameCanvas = styled.canvas`
+  width: ${GAME_CANVAS_WIDTH}px;
+  height: ${GAME_CANVAS_HEIGHT}px;
   position: absolute;
   border: 1px solid rgba(0, 0, 0, 0.24);
 

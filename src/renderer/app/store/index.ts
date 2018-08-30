@@ -1,8 +1,7 @@
-import { observable } from 'mobx';
+import { GameStore } from './game';
 
 export class Store {
-  @observable
-  public playCanvas: HTMLCanvasElement;
+  public gameStore = new GameStore();
 }
 
 export default new Store();
