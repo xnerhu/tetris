@@ -48,19 +48,25 @@ export class GameStore {
     }
 
     for (let x = 0; x < GAME_X_COUNT; x++) {
-      for (let y = 0; y < GAME_Y_COUNT; y++) {
-        ctx.beginPath();
+      ctx.beginPath();
 
-        ctx.strokeStyle = '#000';
-        ctx.lineWidth = 1;
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = '#000';
 
-        ctx.strokeRect(
-          x * GAME_SQUARE_SIZE,
-          y * GAME_SQUARE_SIZE,
-          GAME_SQUARE_SIZE,
-          GAME_SQUARE_SIZE,
-        );
-      }
+      ctx.moveTo(x * GAME_SQUARE_SIZE - 0.5, 0);
+      ctx.lineTo(x * GAME_SQUARE_SIZE - 0.5, GAME_CANVAS_HEIGHT);
+      ctx.stroke();
+    }
+
+    for (let y = 0; y < GAME_Y_COUNT; y++) {
+      ctx.beginPath();
+
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = '#000';
+
+      ctx.moveTo(0, y * GAME_SQUARE_SIZE - 0.5);
+      ctx.lineTo(GAME_CANVAS_HEIGHT, y * GAME_SQUARE_SIZE - 0.5);
+      ctx.stroke();
     }
   }
 

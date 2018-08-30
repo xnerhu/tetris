@@ -15,6 +15,8 @@ export const GameCanvas = styled.canvas`
   width: ${GAME_CANVAS_WIDTH}px;
   height: ${GAME_CANVAS_HEIGHT}px;
   position: absolute;
+  border: 1px solid rgba(0, 0, 0.24);
+  box-sizing: content-box;
 
   ${centerBoth()};
 `;
