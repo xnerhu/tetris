@@ -13,8 +13,9 @@ import {
   willCollide,
   getShapePoints,
   getRandomShapeColor,
+  getRandomShape,
 } from '~/utils';
-import { shapesList, POINT_BORDER_COLOR, POINT_BORDER_WIDTH } from '~/defaults';
+import { POINT_BORDER_COLOR, POINT_BORDER_WIDTH } from '~/defaults';
 
 export class GameStore {
   public canvas: HTMLCanvasElement;
@@ -90,14 +91,7 @@ export class GameStore {
     } else {
       this.points = [...this.points, ...getShapePoints(this.currentShape)];
 
-      const hash = '0123456789ABCDEF';
-      let hashColor = '#';
-
-      for (let i = 0; i < 6; i++) {
-        hashColor += hash[Math.floor(Math.random() * hash.length)];
-      }
-
-      this.setShape({ ...shapesList[0], ...{ color: hashColor } }, 1, 1);
+      this.setShape(getRandomShape(), 1, 1);
     }
 
     this.render();

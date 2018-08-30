@@ -208,5 +208,4 @@ export const shapeColors = [
   '#2979FF',
   '#FFFF00',
   '#FFC107',
-  '#C6FF00',
 ];

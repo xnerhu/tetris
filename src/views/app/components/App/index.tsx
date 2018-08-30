@@ -1,24 +1,18 @@
 import { observer } from 'mobx-react';
 import React from 'react';
 
-import {
-  GAME_CANVAS_WIDTH,
-  GAME_CANVAS_HEIGHT,
-  GAME_X_COUNT,
-  GAME_Y_COUNT,
-} from '~/constants';
+import { GAME_CANVAS_WIDTH, GAME_CANVAS_HEIGHT } from '~/constants';
 import store from '../../store';
 import { StyledApp, GameCanvas } from './styles';
-import { shapesList } from '~/defaults';
-import { willCollide } from '~/utils';
+import { willCollide, getRandomShape } from '~/utils';
 
 @observer
 class App extends React.Component {
   componentDidMount() {
-    store.gameStore.setShape(shapesList[0], 1, GAME_Y_COUNT - 8);
+    store.gameStore.setShape(getRandomShape(), 1);
     store.gameStore.render();
 
-    // store.gameStore.timer = setInterval(store.gameStore.pushDown, 600);
+    store.gameStore.timer = setInterval(store.gameStore.pushDown, 600);
 
     window.addEventListener('keydown', this.onKeyDown);
   }
