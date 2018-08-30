@@ -15,10 +15,10 @@ import { willCollide } from '~/utils';
 @observer
 class App extends React.Component {
   componentDidMount() {
-    store.gameStore.setShape(shapesList.a, 1, GAME_Y_COUNT - 8);
+    store.gameStore.setShape(shapesList[1], 1, GAME_Y_COUNT - 8);
     store.gameStore.render();
 
-    // store.gameStore.timer = setInterval(store.gameStore.pushShape, 400);
+    // store.gameStore.timer = setInterval(store.gameStore.pushDown, 600);
 
     window.addEventListener('keydown', this.onKeyDown);
   }
