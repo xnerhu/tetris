@@ -1,4 +1,4 @@
-export interface Field {
+export interface Point {
   x: number;
   y: number;
   color: string;

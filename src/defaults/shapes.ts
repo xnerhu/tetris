@@ -1,4 +1,6 @@
-export const shapesList: any = {
+import { Shape } from '~/interfaces/shape';
+
+export const shapesList: { [key: string]: Shape } = {
   test: {
     color: 'red',
     points: [
@@ -13,10 +15,6 @@ export const shapesList: any = {
       {
         x: 1,
         y: 1,
-      },
-      {
-        x: 1,
-        y: 2,
       },
     ],
   },

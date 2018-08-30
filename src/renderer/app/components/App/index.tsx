@@ -5,21 +5,19 @@ import { GAME_CANVAS_WIDTH, GAME_CANVAS_HEIGHT } from '~/constants';
 import store from '../../store';
 import { StyledApp, GameCanvas } from './styles';
 import { shapesList } from '~/defaults';
-import { Shape } from '~/interfaces/shape';
 
 @observer
 class App extends React.Component {
   public componentDidMount() {
-    let y = 0;
+    store.gameStore.addShape(shapesList.test, 1);
+    store.gameStore.render();
 
     setInterval(() => {
-      store.gameStore.fields = [];
-      store.gameStore.addShape(shapesList.test as Shape, 0, y);
+      const current = store.gameStore.currentShape;
+      current.y++;
 
       store.gameStore.render();
-
-      y++;
-    }, 1000);
+    }, 400);
   }
 
   public render() {

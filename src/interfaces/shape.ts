@@ -1,9 +1,9 @@
 export interface Shape {
   color: string;
-  points: [
-    {
-      x: number;
-      y: number;
-    }
-  ];
+  x?: number;
+  y?: number;
+  points?: {
+    x: number;
+    y: number;
+  }[];
 }
