@@ -200,4 +200,13 @@ export const shapesList: Shape[] = [
   },
 ];
 
-export const shapeColors = ['red', 'blue'];
+export const shapeColors = [
+  '#D50000',
+  '#F50057',
+  '#AA00FF',
+  '#3F51B5',
+  '#2979FF',
+  '#FFFF00',
+  '#FFC107',
+  '#C6FF00',
+];
