@@ -94,10 +94,10 @@ export class GameStore {
       this.points = [...this.points, ...getShapePoints(this.currentShape)];
       this.addRandomShape();
 
-      if (willCollide(this.currentShape, 'top') && this.currentShape.y < 4) {
+      /* if (willCollide(this.currentShape, 'top') && this.currentShape.y < 4) {
         alert('Game over!');
         return clearInterval(this.timer);
-      }
+      }*/
     }
 
     this.checkRows();
@@ -120,6 +120,31 @@ export class GameStore {
           point.y++;
         }
       }
+    }
+  };
+
+  public getRotatedPoints = (
+    cx: number,
+    cy: number,
+    x: number,
+    y: number,
+    angle: number,
+  ) => {
+    const radians = (Math.PI / 180) * angle;
+    const cos = Math.cos(radians);
+    const sin = Math.sin(radians);
+    const nx = cos * (x - cx) + sin * (y - cy) + cx;
+    const ny = cos * (y - cy) - sin * (x - cx) + cy;
+
+    return { x: nx, y: ny };
+  };
+
+  public rotate = () => {
+    for (const point of this.currentShape.points) {
+      const newPoints = this.getRotatedPoints(0, 0, point.x, point.y, 90);
+
+      point.x = Math.round(newPoints.x);
+      point.y = Math.round(newPoints.y);
     }
   };
 }

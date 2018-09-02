@@ -15,7 +15,7 @@ import { shapesList } from '~/defaults';
 @observer
 class App extends React.Component {
   componentDidMount() {
-    for (let x = 0; x < GAME_X_COUNT - 2; x++) {
+    /* for (let x = 0; x < GAME_X_COUNT - 2; x++) {
       for (let y = GAME_Y_COUNT - 1; y < GAME_Y_COUNT; y++) {
         store.gameStore.points.push({
           color: 'red',
@@ -23,17 +23,18 @@ class App extends React.Component {
           y,
         });
       }
-    }
+    }*/
 
-    store.gameStore.setShape(shapesList[2], 4, 16);
+    /* store.gameStore.setShape(shapesList[2], 4, 12);
+    store.gameStore.rotate();
     store.gameStore.render();
+*/
 
-    /*
     store.gameStore.addRandomShape();
     // store.gameStore.setShape(shapesList[1], 4, 16);
     store.gameStore.render();
 
-    store.gameStore.timer = setInterval(store.gameStore.pushDown, 600);*/
+    store.gameStore.timer = setInterval(store.gameStore.pushDown, 600);
 
     window.addEventListener('keydown', this.onKeyDown);
   }
@@ -68,9 +69,7 @@ class App extends React.Component {
         currentShape.y++;
       }
     } else if (e.code === 'ArrowUp') {
-      if (!willCollide(currentShape, 'top')) {
-        currentShape.y--;
-      }
+      store.gameStore.rotate();
     }
 
     store.gameStore.checkRows();

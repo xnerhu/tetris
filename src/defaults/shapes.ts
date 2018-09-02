@@ -67,6 +67,28 @@ export const shapesList: Shape[] = [
       },
     ],
   },
+  /*{
+    color: '#FF6D00',
+    description: 'L-shape',
+    points: [
+      {
+        x: 2,
+        y: 0,
+      },
+      {
+        x: 1,
+        y: 0,
+      },
+      {
+        x: 0,
+        y: 0,
+      },
+      {
+        x: 0,
+        y: 1,
+      },
+    ],
+  },*/
   {
     color: '#0D47A1',
     description: 'J-shape',
