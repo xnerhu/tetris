@@ -1,18 +1,39 @@
 import { observer } from 'mobx-react';
 import React from 'react';
 
-import { GAME_CANVAS_WIDTH, GAME_CANVAS_HEIGHT } from '~/constants';
+import {
+  GAME_CANVAS_WIDTH,
+  GAME_CANVAS_HEIGHT,
+  GAME_X_COUNT,
+  GAME_Y_COUNT,
+} from '~/constants';
 import store from '../../store';
 import { StyledApp, GameCanvas } from './styles';
-import { willCollide, getRandomShape } from '~/utils';
+import { willCollide, getRandomShape, getShapePoints } from '~/utils';
+import { shapesList } from '~/defaults';
 
 @observer
 class App extends React.Component {
   componentDidMount() {
-    store.gameStore.addRandomShape();
+    for (let x = 0; x < GAME_X_COUNT - 2; x++) {
+      for (let y = GAME_Y_COUNT - 1; y < GAME_Y_COUNT; y++) {
+        store.gameStore.points.push({
+          color: 'red',
+          x,
+          y,
+        });
+      }
+    }
+
+    store.gameStore.setShape(shapesList[2], 4, 16);
     store.gameStore.render();
 
-    store.gameStore.timer = setInterval(store.gameStore.pushDown, 600);
+    /*
+    store.gameStore.addRandomShape();
+    // store.gameStore.setShape(shapesList[1], 4, 16);
+    store.gameStore.render();
+
+    store.gameStore.timer = setInterval(store.gameStore.pushDown, 600);*/
 
     window.addEventListener('keydown', this.onKeyDown);
   }
@@ -52,6 +73,7 @@ class App extends React.Component {
       }
     }
 
+    store.gameStore.checkRows();
     store.gameStore.render();
   };
 

@@ -14,7 +14,7 @@ import {
   getShapePoints,
   getRandomShape,
 } from '~/utils';
-import { POINT_BORDER_COLOR, POINT_BORDER_WIDTH } from '~/defaults';
+import { POINT_BORDER_COLOR, POINT_BORDER_WIDTH, shapesList } from '~/defaults';
 
 export class GameStore {
   public canvas: HTMLCanvasElement;
@@ -94,12 +94,32 @@ export class GameStore {
       this.points = [...this.points, ...getShapePoints(this.currentShape)];
       this.addRandomShape();
 
-      if (willCollide(this.currentShape, 'top')) {
+      if (willCollide(this.currentShape, 'top') && this.currentShape.y < 4) {
         alert('Game over!');
-        clearInterval(this.timer);
+        return clearInterval(this.timer);
       }
     }
 
+    this.checkRows();
     this.render();
+  };
+
+  public checkRows = () => {
+    for (let y = GAME_Y_COUNT - 1; y >= 0; y--) {
+      const points = this.points.filter(e => e.y === y);
+
+      if (points.length === GAME_X_COUNT) {
+        for (const point of points) {
+          const index = this.points.indexOf(point);
+          this.points.splice(index, 1);
+        }
+
+        const pointsAbove = this.points.filter(e => e.y < y);
+
+        for (const point of pointsAbove) {
+          point.y++;
+        }
+      }
+    }
   };
 }
