@@ -9,7 +9,7 @@ import { willCollide, getRandomShape } from '~/utils';
 @observer
 class App extends React.Component {
   componentDidMount() {
-    store.gameStore.setShape(getRandomShape(), 1);
+    store.gameStore.addRandomShape();
     store.gameStore.render();
 
     store.gameStore.timer = setInterval(store.gameStore.pushDown, 600);

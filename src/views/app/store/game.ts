@@ -12,7 +12,6 @@ import {
   mergeShape,
   willCollide,
   getShapePoints,
-  getRandomShapeColor,
   getRandomShape,
 } from '~/utils';
 import { POINT_BORDER_COLOR, POINT_BORDER_WIDTH } from '~/defaults';
@@ -31,7 +30,6 @@ export class GameStore {
 
     this.currentShape.x = x;
     this.currentShape.y = y;
-    this.currentShape.color = getRandomShapeColor();
   }
 
   private drawBorders(
@@ -83,6 +81,10 @@ export class GameStore {
     this.drawBorders(ctx, 'horizontal');
   }
 
+  public addRandomShape() {
+    this.setShape(getRandomShape(), Math.floor(GAME_X_COUNT / 2), 0);
+  }
+
   public pushDown = () => {
     if (this.currentShape == null) return;
 
@@ -90,8 +92,12 @@ export class GameStore {
       this.currentShape.y++;
     } else {
       this.points = [...this.points, ...getShapePoints(this.currentShape)];
+      this.addRandomShape();
 
-      this.setShape(getRandomShape(), 1, 1);
+      if (willCollide(this.currentShape, 'top')) {
+        alert('Game over!');
+        clearInterval(this.timer);
+      }
     }
 
     this.render();

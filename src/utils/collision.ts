@@ -14,7 +14,7 @@ export const willCollide = (
 
     if (side === 'top') {
       const sameCoord = points.find(e => e.x === x && e.y === y - 1);
-      if (y <= 0 || sameCoord) return true;
+      if (y < 0 || sameCoord) return true;
     }
 
     if (side === 'bottom') {

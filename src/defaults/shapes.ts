@@ -2,6 +2,7 @@ import { Shape } from '~/interfaces/shape';
 
 export const shapesList: Shape[] = [
   {
+    color: '#2979FF',
     description: 'Line',
     points: [
       {
@@ -23,6 +24,7 @@ export const shapesList: Shape[] = [
     ],
   },
   {
+    color: '#FFEA00',
     description: 'Square',
     points: [
       {
@@ -44,6 +46,7 @@ export const shapesList: Shape[] = [
     ],
   },
   {
+    color: '#FF6D00',
     description: 'L-shape',
     points: [
       {
@@ -65,6 +68,7 @@ export const shapesList: Shape[] = [
     ],
   },
   {
+    color: '#0D47A1',
     description: 'J-shape',
     points: [
       {
@@ -86,6 +90,7 @@ export const shapesList: Shape[] = [
     ],
   },
   {
+    color: '#651FFF',
     description: 'Tree',
     points: [
       {
@@ -107,6 +112,7 @@ export const shapesList: Shape[] = [
     ],
   },
   {
+    color: '#D50000',
     description: 'Z-shape',
     points: [
       {
@@ -128,6 +134,7 @@ export const shapesList: Shape[] = [
     ],
   },
   {
+    color: '#4CAF50',
     description: 'S-shape',
     points: [
       {
@@ -148,64 +155,4 @@ export const shapesList: Shape[] = [
       },
     ],
   },
-  {
-    description: 'U-shape',
-    points: [
-      {
-        x: 0,
-        y: 0,
-      },
-      {
-        x: 2,
-        y: 0,
-      },
-      {
-        x: 0,
-        y: 1,
-      },
-      {
-        x: 1,
-        y: 1,
-      },
-      {
-        x: 2,
-        y: 1,
-      },
-    ],
-  },
-  {
-    description: 'Plus',
-    points: [
-      {
-        x: 1,
-        y: 0,
-      },
-      {
-        x: 1,
-        y: 1,
-      },
-      {
-        x: 0,
-        y: 1,
-      },
-      {
-        x: 2,
-        y: 1,
-      },
-      {
-        x: 1,
-        y: 2,
-      },
-    ],
-  },
-];
-
-export const shapeColors = [
-  '#D50000',
-  '#F50057',
-  '#AA00FF',
-  '#3F51B5',
-  '#2979FF',
-  '#FFFF00',
-  '#FFC107',
 ];
