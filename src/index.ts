@@ -8,6 +8,8 @@ window.onload = () => {
   store.canvas = document.getElementById('canvas') as HTMLCanvasElement;
   store.canvas.style.width = `${GAME_CANVAS_WIDTH}px`;
   store.canvas.style.height = `${GAME_CANVAS_HEIGHT}px`;
+  store.canvas.setAttribute('width', GAME_CANVAS_WIDTH.toString());
+  store.canvas.setAttribute('height', GAME_CANVAS_HEIGHT.toString());
 
   store.addRandomShape();
   store.render();
