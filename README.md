@@ -3,4 +3,4 @@ A very basic tetris game written in TypeScript and drawn in HTML canvas
 
 # Screenshots
 
-![game](screenshots/screenshot-1.png)
+![game](https://raw.githubusercontent.com/xNerhu/typetris/master/screenshots/game.png)
