@@ -5,7 +5,6 @@ build
 dist
 .vscode
 .vs
-.DS_Store
 .awcache
-main.js
-main.js.map
+.fusebox
+server.js

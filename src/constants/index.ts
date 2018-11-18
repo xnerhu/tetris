@@ -1,1 +1,3 @@
-export * from '~/constants/game';
+export * from './design';
+export * from './game';
+export * from './shapes';

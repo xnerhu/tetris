@@ -1,22 +1,21 @@
-import { Point } from '~/interfaces';
-
+import { Point, Shape } from '~/interfaces';
 import {
   GAME_CANVAS_WIDTH,
   GAME_CANVAS_HEIGHT,
   GAME_SQUARE_SIZE,
   GAME_X_COUNT,
   GAME_Y_COUNT,
+  POINT_BORDER_COLOR,
+  POINT_BORDER_WIDTH,
 } from '~/constants';
-import { Shape } from '~/interfaces/shape';
 import {
   mergeShape,
   willCollide,
   getShapePoints,
   getRandomShape,
 } from '~/utils';
-import { POINT_BORDER_COLOR, POINT_BORDER_WIDTH, shapesList } from '~/defaults';
 
-export class GameStore {
+export class Store {
   public canvas: HTMLCanvasElement;
 
   public points: Point[] = [];
@@ -148,3 +147,5 @@ export class GameStore {
     }
   };
 }
+
+export default new Store();

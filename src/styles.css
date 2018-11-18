@@ -1,0 +1,21 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  user-select: none;
+  cursor: default;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#canvas {
+  border: 1px solid rgba(0, 0, 0.24);
+}

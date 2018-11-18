@@ -1,4 +1,4 @@
-import { shapesList } from '~/defaults';
+import { shapesList } from '~/constants';
 
 export const randomize = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;

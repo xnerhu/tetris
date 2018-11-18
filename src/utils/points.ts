@@ -1,5 +1,5 @@
 import { Shape, Point } from '~/interfaces';
-import store from '@app/store';
+import store from '~/store';
 
 export const getShapePoints = (shape: Shape) => {
   const points: Point[] = [];
@@ -19,5 +19,5 @@ export const getShapePoints = (shape: Shape) => {
 
 export const mergeShape = (shape: Shape) => {
   const points = getShapePoints(shape);
-  return [...store.gameStore.points, ...points];
+  return [...store.points, ...points];
 };
