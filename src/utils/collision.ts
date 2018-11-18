@@ -1,13 +1,13 @@
 import { GAME_Y_COUNT, GAME_X_COUNT } from '~/constants';
 import { Shape } from '~/interfaces';
 import { getShapePoints } from '~/utils';
-import store from '@app/store';
+import store from '~/store';
 
 export const willCollide = (
   shape: Shape,
   side: 'top' | 'bottom' | 'left' | 'right',
 ) => {
-  const points = store.gameStore.points;
+  const points = store.points;
 
   for (const point of getShapePoints(shape)) {
     const { x, y } = point;
