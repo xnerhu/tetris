@@ -1,5 +1,5 @@
 # Typetris
-A very basic tetris game written in TypeScript and drawn in HTML canvas.
+A very basic tetris game written in TypeScript and drawn on HTML canvas.
 
 ## Screenshots
 
