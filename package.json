@@ -1,7 +1,7 @@
 {
-  "name": "typetris",
+  "name": "tetris",
   "version": "1.0.0",
-  "description": "A tetris game written in TypeScript",
+  "description": "",
   "keywords": [
     "tetris",
     "game",
